@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="124" viewBox="0 0 1200 124" role="img" aria-labelledby="title desc">
+  <title id="title">Продумано до деталей</title>
+  <desc id="desc">Раздел 02 — визуальная система Мастерской красоты</desc>
+  <rect width="1200" height="124" rx="20" fill="#fbf8f4"/>
+  <text x="48" y="79" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="22" fill="#8c6570">02</text>
+  <text x="118" y="84" font-family="Georgia,serif" font-size="50" font-style="italic" fill="#622c3d">Продумано до деталей</text>
+  <path d="M925 62H1152" stroke="#cdb8bd" stroke-width="1"/>
+  <g transform="translate(890 62)" stroke="#8c6570" stroke-width="1.5" fill="none">
+    <path d="M-18 0H18M0-18V18M-13-13L13 13M-13 13L13-13"/>
+  </g>
+</svg>

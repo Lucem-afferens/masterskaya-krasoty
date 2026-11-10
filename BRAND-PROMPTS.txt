@@ -1,0 +1,31 @@
+Утверждённый логотип — вариант 1 «Личная подпись»
+Способ подготовки: встроенный ImageGen; техническое кадрирование прозрачных полей, масштабирование и экспорт через Sharp.
+Исходный вариант: ../01-personal-signature.png
+
+logo-stacked
+Прозрачный фон: true
+
+Use case: background-extraction. Edit target: the attached approved beauty studio logo. Remove the warm ivory background and make the background genuinely transparent. Preserve the exact approved design: intertwined Cyrillic МК monogram above the two-line serif wordmark "Мастерская" / "красоты". Preserve the original letter shapes, proportions, layout, spelling and flourish. Do not redesign, add, substitute or remove any strokes or lettering. Clean uniform deep cherry #622C3D ink with crisp smooth antialiased edges, no paper texture, no shadows, no background rectangle. Center the intact logo in the transparent canvas, with a narrow clear margin. Production logo asset, not a mockup. All visible letters must be exactly as in the source.
+
+----------------------------------------
+
+logo-horizontal
+Прозрачный фон: true
+
+Use case: precise-object-edit. Edit target: the attached approved beauty studio logo. Produce its horizontal website-header layout on a genuinely transparent background. Keep the EXACT intertwined Cyrillic МК monogram and EXACT serif wordmark letter shapes and Cyrillic spelling from the approved reference. Only rearrange the layout: original monogram at left; the two-line wordmark "Мастерская" above "красоты" immediately to its right. The wordmark should have almost the same total height as the monogram so the studio name reads clearly at a 55px header height. Compact, balanced horizontal lockup, about 3.6:1 aspect ratio, minimal transparent outer margins. Do not recreate with different fonts, do not change the monogram flourish or silhouettes. All elements uniform solid deep cherry #622C3D. Crisp flat edges. No background rectangle, no shadows, no texture, no extra text, no tagline. This is a faithful responsive arrangement of this approved logo, not a new logo concept.
+
+----------------------------------------
+
+favicon-master
+Прозрачный фон: false
+
+Use case: precise-object-edit. Edit target: the attached approved beauty studio logo. Create a square browser/app favicon derived from the exact intertwined Cyrillic МК monogram at the top of this approved logo. Preserve the recognizable letter shapes, their overlap and their sweeping connecting flourish faithfully. Remove the two-line wordmark entirely: the icon must contain only the original МК monogram. Center the monogram as large as possible in a square flat warm ivory #FBF8F4 field with approximately 7 percent horizontal margins. Monogram ink must be uniform deep cherry #622C3D. Make delicate hairlines just slightly more robust to reproduce at 16–32px while retaining the approved silhouette. No extra symbols, no badge border, no caption, no shadows, no gradient, no photograph, no mockup, no texture. Clean flat crisp vector-like icon. Do not invent a different monogram or add more flourishes.
+
+
+
+Способ: встроенный ImageGen, режим удаления фона.
+Исходник: favicon-master.png
+Результат: favicon-transparent.png
+PNG и ICO экспортированы с сохранением альфа-канала.
+
+Use case: background-extraction. Edit target: the attached approved МК monogram favicon. Remove ONLY the ivory background, replacing it with genuine alpha transparency everywhere, including the open interior spaces of both letters. Preserve the existing monogram exactly: same cherry colour, letter shapes, connecting flourish, stroke thickness, edges, size, position and square canvas. No redesign, no additional letters, no change to composition. No background, no white fill, no checkerboard baked into the image, no shadow, no border. Retain clean antialiased edges without an ivory halo. Transparent PNG production asset.

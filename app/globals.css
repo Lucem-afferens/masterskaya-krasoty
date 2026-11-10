@@ -555,6 +555,104 @@ em {
 .direction-bottom > span {
   font-size: 10px;
 }
+.direction-action {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: fit-content;
+  min-height: 46px;
+  margin-top: 20px;
+  padding: 7px 16px 7px 11px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  pointer-events: none;
+}
+.direction-action.is-invitation {
+  background: #fbf8f4e8;
+  border-color: #622c3d20;
+  color: var(--cherry);
+  box-shadow: 0 3px 10px #45252f06;
+}
+.direction-action.is-selected {
+  justify-content: flex-start;
+  padding-left: 0;
+  color: inherit;
+  font-weight: 500;
+}
+.tap-gesture {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 31px;
+  height: 30px;
+  flex: 0 0 31px;
+}
+.tap-hand {
+  position: relative;
+  z-index: 1;
+  fill: #fbf8f4;
+  transform-origin: 50% 80%;
+  animation: direction-tap 2.1s cubic-bezier(0.22, 1, 0.36, 1) 2 both;
+  animation-play-state: paused;
+}
+.tap-wave {
+  position: absolute;
+  top: -1px;
+  left: 7px;
+  width: 17px;
+  height: 17px;
+  border: 1px solid #a96f81;
+  border-radius: 50%;
+  opacity: 0;
+  animation: direction-wave 2.1s ease-out 2 both;
+  animation-play-state: paused;
+}
+.direction-action[data-animate="true"] .tap-hand,
+.direction-action[data-animate="true"] .tap-wave {
+  animation-play-state: running;
+}
+@keyframes direction-tap {
+  0%, 12%, 65%, 100% { transform: translateY(0) rotate(-9deg); }
+  30% { transform: translateY(-5px) rotate(-3deg); }
+  43% { transform: translateY(2px) rotate(-9deg) scale(0.94); }
+  55% { transform: translateY(-1px) rotate(-9deg); }
+}
+@keyframes direction-wave {
+  0%, 32% { opacity: 0; transform: scale(0.55); }
+  43% { opacity: 0.65; transform: scale(0.8); }
+  72%, 100% { opacity: 0; transform: scale(1.9); }
+}
+@media (max-width: 700px) {
+  .direction-action {
+    gap: 6px;
+    min-height: 46px;
+    max-width: 100%;
+    margin-top: 17px;
+    padding: 6px 10px 6px 7px;
+    font-size: 11px;
+    text-align: left;
+  }
+  .direction-action-second {
+    display: block;
+  }
+}
+@media (max-width: 380px) {
+  .direction-action {
+    gap: 4px;
+    padding-right: 8px;
+    font-size: 10px;
+  }
+  .direction-action.is-selected {
+    padding-right: 0;
+  }
+}
 .direction-flower {
   position: absolute;
   right: -15px;

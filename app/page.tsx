@@ -13,6 +13,7 @@ import {
   MapPin,
   Menu,
   Phone,
+  Pointer,
   Plus,
   Send,
   Sparkles,
@@ -30,6 +31,51 @@ const navigation = [
   { label: "Вопросы", id: "questions", detail: "Всё важное перед визитом" },
   { label: "Контакты", id: "contacts", detail: "Наш адрес и ваши мастера" },
 ];
+
+function DirectionAction({ selected }: { selected: boolean }) {
+  const hintRef = useRef<HTMLSpanElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setVisible(false);
+    if (selected) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.75)) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.75 },
+    );
+    if (hintRef.current) observer.observe(hintRef.current);
+    return () => observer.disconnect();
+  }, [selected]);
+
+  return (
+    <span
+      ref={hintRef}
+      className={`direction-action${selected ? " is-selected" : " is-invitation"}`}
+      data-animate={!selected && visible}
+      aria-hidden="true"
+    >
+      {selected ? (
+        <>
+          <ArrowDown size={19} strokeWidth={1.5} />
+          <span>Услуги ниже</span>
+        </>
+      ) : (
+        <>
+          <span className="tap-gesture">
+            <span className="tap-wave" />
+            <Pointer className="tap-hand" size={27} strokeWidth={1.35} />
+          </span>
+          <span>Смотреть <span className="direction-action-second">услуги</span></span>
+        </>
+      )}
+    </span>
+  );
+}
 
 function Brand({ light = false }: { light?: boolean }) {
   return (
@@ -343,6 +389,7 @@ export default function Home() {
               <span className="direction-description">
                 Маникюр, педикюр, наращивание и дизайн
               </span>
+              <DirectionAction selected={direction === "nails"} />
               <span className="direction-bottom">
                 С мастером Светланой <span>04 услуги</span>
               </span>
@@ -382,6 +429,7 @@ export default function Home() {
               <span className="direction-description">
                 Аппаратные процедуры и эстетический уход
               </span>
+              <DirectionAction selected={direction === "body"} />
               <span className="direction-bottom">
                 С заботой о вашем теле <span>06 услуг</span>
               </span>

@@ -39,17 +39,25 @@ function DirectionAction({ selected }: { selected: boolean }) {
   useEffect(() => {
     setVisible(false);
     if (selected) return;
+    let inViewport = false;
+    const updateVisibility = () => {
+      setVisible(inViewport && document.visibilityState === "visible");
+    };
     const observer = new IntersectionObserver(
       (entries) => {
-        if (entries.some((entry) => entry.isIntersecting && entry.intersectionRatio >= 0.75)) {
-          setVisible(true);
-          observer.disconnect();
-        }
+        inViewport = entries.some(
+          (entry) => entry.isIntersecting && entry.intersectionRatio >= 0.75,
+        );
+        updateVisibility();
       },
       { threshold: 0.75 },
     );
     if (hintRef.current) observer.observe(hintRef.current);
-    return () => observer.disconnect();
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", updateVisibility);
+    };
   }, [selected]);
 
   return (
@@ -59,20 +67,17 @@ function DirectionAction({ selected }: { selected: boolean }) {
       data-animate={!selected && visible}
       aria-hidden="true"
     >
-      {selected ? (
-        <>
-          <ArrowDown size={19} strokeWidth={1.5} />
-          <span>Услуги ниже</span>
-        </>
-      ) : (
-        <>
-          <span className="tap-gesture">
-            <span className="tap-wave" />
-            <Pointer className="tap-hand" size={27} strokeWidth={1.35} />
-          </span>
-          <span>Смотреть <span className="direction-action-second">услуги</span></span>
-        </>
-      )}
+      <span className="direction-action-layer direction-action-current">
+        <ArrowDown size={19} strokeWidth={1.5} />
+        <span>Услуги ниже</span>
+      </span>
+      <span className="direction-action-layer direction-action-invite">
+        <span className="tap-gesture">
+          <span className="tap-wave" />
+          <Pointer className="tap-hand" size={27} strokeWidth={1.35} />
+        </span>
+        <span>Смотреть <span className="direction-action-second">услуги</span></span>
+      </span>
     </span>
   );
 }
@@ -373,12 +378,9 @@ export default function Home() {
             >
               <span className="direction-top">
                 <span className="direction-kicker">НОГТЕВОЙ СЕРВИС</span>
-                <span className="direction-indicator">
-                  {direction === "nails" ? (
-                    <Check size={21} />
-                  ) : (
-                    <ArrowUpRight size={21} />
-                  )}
+                <span className="direction-indicator" aria-hidden="true">
+                  <Check className="direction-check" size={21} />
+                  <ArrowUpRight className="direction-arrow" size={21} />
                 </span>
               </span>
               <span className="direction-title">
@@ -413,12 +415,9 @@ export default function Home() {
             >
               <span className="direction-top">
                 <span className="direction-kicker">ЭСТЕТИКА ТЕЛА</span>
-                <span className="direction-indicator">
-                  {direction === "body" ? (
-                    <Check size={21} />
-                  ) : (
-                    <ArrowUpRight size={21} />
-                  )}
+                <span className="direction-indicator" aria-hidden="true">
+                  <Check className="direction-check" size={21} />
+                  <ArrowUpRight className="direction-arrow" size={21} />
                 </span>
               </span>
               <span className="direction-title">
@@ -440,7 +439,7 @@ export default function Home() {
             <div className="service-menu-heading">
               <div>
                 <span className="active-dot" />
-                <h3>{studio.contacts[direction].label}</h3>
+                <h3 key={direction}>{studio.contacts[direction].label}</h3>
               </div>
               <span>
                 Выберите услугу, чтобы узнать больше <ArrowDown size={15} />

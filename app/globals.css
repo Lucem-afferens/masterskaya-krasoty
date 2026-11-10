@@ -476,13 +476,15 @@ em {
   overflow: hidden;
   isolation: isolate;
   transition:
-    border-color 0.22s,
-    transform 0.22s,
-    box-shadow 0.22s;
+    border-color 0.45s ease,
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.45s ease;
 }
-.direction-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 30px #45252f0c;
+@media (hover: hover) and (pointer: fine) {
+  .direction-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px #45252f0c;
+  }
 }
 .direction-card[aria-selected="true"] {
   border-color: var(--cherry);
@@ -507,6 +509,7 @@ em {
   letter-spacing: 0.1em;
 }
 .direction-indicator {
+  position: relative;
   width: 42px;
   height: 42px;
   display: inline-flex;
@@ -515,6 +518,23 @@ em {
   border: 1px solid #a8898c;
   border-radius: 50%;
   background: #ffffff55;
+  transition: background-color 0.45s ease, border-color 0.45s ease, color 0.45s ease;
+}
+.direction-indicator svg {
+  position: absolute;
+  transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.direction-check {
+  opacity: 0;
+  transform: scale(0.7) rotate(-18deg);
+}
+.direction-card[aria-selected="true"] .direction-check {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+.direction-card[aria-selected="true"] .direction-arrow {
+  opacity: 0;
+  transform: translate(3px, -3px) scale(0.8);
 }
 .direction-card[aria-selected="true"] .direction-indicator {
   background: var(--cherry);
@@ -558,32 +578,46 @@ em {
 .direction-action {
   position: relative;
   z-index: 1;
+  display: grid;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 20px;
+  pointer-events: none;
+  font-size: 12px;
+  line-height: 1.3;
+}
+.direction-action-layer {
+  grid-area: 1 / 1;
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 9px;
-  width: fit-content;
   min-height: 46px;
-  margin-top: 20px;
   padding: 7px 16px 7px 11px;
   border: 1px solid transparent;
   border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 1.3;
-  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.direction-action.is-invitation {
+.direction-action-invite {
   background: #fbf8f4e8;
   border-color: #622c3d20;
   color: var(--cherry);
   box-shadow: 0 3px 10px #45252f06;
+  font-weight: 600;
+  opacity: 0;
+  transform: translateY(6px) scale(0.96);
 }
-.direction-action.is-selected {
-  justify-content: flex-start;
+.direction-action-current {
   padding-left: 0;
   color: inherit;
   font-weight: 500;
+  opacity: 0;
+  transform: translateY(-5px);
+}
+.is-invitation .direction-action-invite,
+.is-selected .direction-action-current {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition-delay: 0.08s;
 }
 .tap-gesture {
   position: relative;
@@ -599,7 +633,7 @@ em {
   z-index: 1;
   fill: #fbf8f4;
   transform-origin: 50% 80%;
-  animation: direction-tap 2.1s cubic-bezier(0.22, 1, 0.36, 1) 2 both;
+  animation: direction-tap 3.2s ease-in-out infinite both;
   animation-play-state: paused;
 }
 .tap-wave {
@@ -611,7 +645,7 @@ em {
   border: 1px solid #a96f81;
   border-radius: 50%;
   opacity: 0;
-  animation: direction-wave 2.1s ease-out 2 both;
+  animation: direction-wave 3.2s ease-out infinite both;
   animation-play-state: paused;
 }
 .direction-action[data-animate="true"] .tap-hand,
@@ -619,25 +653,28 @@ em {
   animation-play-state: running;
 }
 @keyframes direction-tap {
-  0%, 12%, 65%, 100% { transform: translateY(0) rotate(-9deg); }
-  30% { transform: translateY(-5px) rotate(-3deg); }
-  43% { transform: translateY(2px) rotate(-9deg) scale(0.94); }
-  55% { transform: translateY(-1px) rotate(-9deg); }
+  0%, 10%, 76%, 100% { transform: translateY(0) rotate(-9deg); }
+  32% { transform: translateY(-4px) rotate(-3deg); }
+  48% { transform: translateY(1px) rotate(-9deg) scale(0.96); }
+  62% { transform: translateY(-1px) rotate(-9deg); }
 }
 @keyframes direction-wave {
-  0%, 32% { opacity: 0; transform: scale(0.55); }
-  43% { opacity: 0.65; transform: scale(0.8); }
-  72%, 100% { opacity: 0; transform: scale(1.9); }
+  0%, 39% { opacity: 0; transform: scale(0.55); }
+  49% { opacity: 0.55; transform: scale(0.85); }
+  78%, 100% { opacity: 0; transform: scale(2); }
 }
 @media (max-width: 700px) {
   .direction-action {
-    gap: 6px;
-    min-height: 46px;
-    max-width: 100%;
     margin-top: 17px;
-    padding: 6px 10px 6px 7px;
     font-size: 11px;
     text-align: left;
+  }
+  .direction-action-layer {
+    gap: 6px;
+    padding: 6px 10px 6px 7px;
+  }
+  .direction-action-current {
+    padding-left: 0;
   }
   .direction-action-second {
     display: block;
@@ -645,11 +682,13 @@ em {
 }
 @media (max-width: 380px) {
   .direction-action {
-    gap: 4px;
-    padding-right: 8px;
     font-size: 10px;
   }
-  .direction-action.is-selected {
+  .direction-action-layer {
+    gap: 4px;
+    padding-right: 8px;
+  }
+  .direction-action-current {
     padding-right: 0;
   }
 }
@@ -747,6 +786,14 @@ em {
   grid-template-columns: 1fr 1fr;
   column-gap: 42px;
   align-items: start;
+}
+.service-panel:not([hidden]),
+.service-menu-heading h3 {
+  animation: service-reveal 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes service-reveal {
+  from { opacity: 0; transform: translateY(7px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .service-row {
   border-top: 1px solid var(--line);

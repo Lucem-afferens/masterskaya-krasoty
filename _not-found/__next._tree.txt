@@ -1,4 +1,4 @@
 :HL["/masterskaya-krasoty/_next/static/chunks/3ndj0mss8bxgz.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"7uCDulXmdAgK6xhNmkiH2","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"fu3fVGPgz3zwn0lsSTYfd","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
 import { studio } from "@/lib/studio";
 import { sitePath } from "@/lib/paths";
+import { socialMetadata } from "@/lib/social";
 import "./fonts.css";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  ...socialMetadata(
+    "Мастерская красоты — время для себя",
+    "Ногтевой сервис и эстетика тела. Забота о себе в уютной мастерской на Михневской, 7к2с1, Москва. Запись напрямую к мастерам.",
+  ),
   title: "Мастерская красоты — ногтевой сервис и эстетика тела в Москве",
   description:
     "Маникюр, педикюр, наращивание ногтей и эстетика тела. Мастерская красоты на Михневской, 7к2с1, Москва. Запись напрямую к мастерам по телефону и в Telegram.",
@@ -17,14 +22,6 @@ export const metadata: Metadata = {
     ],
     shortcut: sitePath("/favicon.ico?v=mk2"),
     apple: { url: sitePath("/apple-touch-icon.png?v=mk2"), sizes: "180x180", type: "image/png" },
-  },
-  openGraph: {
-    title: "Мастерская красоты · Место для себя",
-    description:
-      "Ногтевой сервис и эстетика тела в уютной мастерской на Михневской, 7к2с1. Москва. По предварительной записи.",
-    locale: "ru_RU",
-    type: "website",
-    siteName: studio.name,
   },
   robots: { index: true, follow: true },
 };

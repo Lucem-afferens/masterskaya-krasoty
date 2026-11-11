@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Мастерская красоты — обложка для социальных сетей</title>
+  <link rel="stylesheet" href="../app/fonts.css">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+    body { color: #622c3d; background: #fbf8f4; font-family: "Manrope", sans-serif; }
+    .cover { width: 1200px; height: 630px; position: relative; overflow: hidden; background: radial-gradient(ellipse at 0% 100%, #f0e1df 0, #fbf8f4 60%); }
+    .logo { position: absolute; left: 62px; top: 53px; width: 310px; height: auto; }
+    .eyebrow { position: absolute; left: 66px; top: 177px; margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 3px; }
+    h1 { position: absolute; left: 59px; top: 211px; margin: 0; font: 400 116px/.88 "Cormorant Garamond", serif; letter-spacing: -4px; }
+    h1 em { display: block; margin-top: 8px; font-weight: 400; font-size: 126px; letter-spacing: -5px; }
+    .services { position: absolute; left: 66px; top: 456px; margin: 0; font-size: 22px; line-height: 1.65; letter-spacing: -.45px; color: #4a3940; }
+    .address { position: absolute; left: 66px; bottom: 42px; display: flex; align-items: center; gap: 12px; margin: 0; color: #6c555d; font-size: 15px; }
+    .address::before { content: ""; width: 22px; height: 1px; background: #aa7a87; }
+    .portrait { position: absolute; inset: 0 0 0 auto; width: 527px; height: 630px; object-fit: cover; object-position: center; border-top-left-radius: 250px; }
+    .petal { position: absolute; top: 61px; left: 559px; width: 64px; height: 64px; color: #aa7a87; opacity: .7; }
+    .image-note { position: absolute; bottom: 17px; right: 22px; margin: 0; color: #fff9f1; font-size: 10px; letter-spacing: .4px; text-shadow: 0 1px 4px #0008; }
+  </style>
+</head>
+<body>
+  <main class="cover" aria-label="Обложка Мастерской красоты, 1200 на 630 пикселей">
+    <img class="portrait" src="../public/images/beauty-editorial-v2-1200.webp" alt="Редакционный портрет женщины с нежным маникюром">
+    <img class="logo" src="../public/brand/logo-horizontal.webp" alt="Мастерская красоты">
+    <svg class="petal" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+      <g stroke="currentColor" stroke-width="1">
+        <ellipse cx="40" cy="40" rx="12" ry="36"/>
+        <ellipse cx="40" cy="40" rx="12" ry="36" transform="rotate(45 40 40)"/>
+        <ellipse cx="40" cy="40" rx="12" ry="36" transform="rotate(90 40 40)"/>
+        <ellipse cx="40" cy="40" rx="12" ry="36" transform="rotate(135 40 40)"/>
+      </g>
+    </svg>
+    <p class="eyebrow">КРАСОТА В ДЕТАЛЯХ</p>
+    <h1>Время<em>для себя</em></h1>
+    <p class="services">Ногтевой сервис<br>и эстетика тела</p>
+    <p class="address">Москва · Михневская, 7к2с1</p>
+    <p class="image-note">Визуальный образ · AI</p>
+  </main>
+</body>
+</html>

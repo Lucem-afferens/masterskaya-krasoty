@@ -1,6 +1,12 @@
 import type { Metadata } from "next";
 import { sitePath } from "@/lib/paths";
+import { socialMetadata } from "@/lib/social";
 export const metadata: Metadata = {
+  ...socialMetadata(
+    "Конфиденциальность — Мастерская красоты",
+    "Как работает сайт Мастерской красоты: запись, внешние сервисы и технические сведения.",
+    "privacy/",
+  ),
   title: "Конфиденциальность — Мастерская красоты",
 };
 export default function Privacy() {

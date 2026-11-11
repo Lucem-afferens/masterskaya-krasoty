@@ -11,6 +11,7 @@
     "start": "node scripts/serve.mjs",
     "check": "tsc --noEmit",
     "test:smoke": "node scripts/verify-site.mjs",
+    "test:social": "node scripts/verify-social.mjs",
     "build:pages": "node scripts/build-pages.mjs",
     "deploy:pages": "node scripts/deploy-pages.mjs"
   },
